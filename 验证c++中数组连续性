@@ -1,0 +1,14 @@
+#include <iostream>
+using namespace std;
+void test_arr() {
+    int array[2][3] = {
+        {0, 1, 2},
+        {3, 4, 5}
+    };
+    cout << &array[0][0] << " " << &array[0][1] << " " << &array[0][2] << endl;//cout：characteroutput输出，与“《”（插入符）组合一起输出变量；cout << &array[0][0] << " " << &array[0][1] << " " << &array[0][2] << endl;//cout：字符输出，与“《”（插入符）组合一起输出变量；cout << &array[0][0] << " " << &array[0][1] << " " << &array[0][2] << endl;//cout：字符输出，与“《”（插入符）组合一起输出变量；cout << &array[0][0] << " " << &array[0][1] << " " << &array[0][2] << endl;//cout：字符输出，与“《”（插入符）组合一起输出变量；cout << &array[0][0] << " " << &array[0][1] << " " << &array[0][2] << endl;//cout：字符输出，与“《”（插入符）组合一起输出变量；cout << &array[0][0] << " " << &array[0][1] << " " << &array[0][2] << endl;//cout：字符输出，与“《”（插入符）组合一起输出变量；cout << &array[0][0] << " " << &array[0][1] << " " << &array[0][2] << endl;//cout：字符输出，与“《”（插入符）组合一起输出变量；cout << &array[0][0] << " " << &array[0][1] << " " << &array[0][2] << endl;//cout：字符输出，与“《”（插入符）组合一起输出变量；cout << &array[0][0] << " " << &array[0][1] << " " << &array[0][2] << endl;//cout：字符输出，与“《”（插入符）组合一起输出变量；cout << &array[0][0] << " " << &array[0][1] << " " << &array[0][2] << endl;//cout：字符输出，与“《”（插入符）组合一起输出变量；cout << &array[0][0] << " " << &array[0][1] << " " << &array[0][2] << endl;//cout：字符输出，与“《”（插入符）组合一起输出变量；cout << &array[0][0] << " " << &array[0][1] << " " << &array[0][2] << endl;//cout：字符输出，与“《”（插入符）组合一起输出变量；cout << &array[0][0] << " " << &array[0][1] << " " << &array[0][2] << endl;//cout：字符输出，与“《”（插入符）组合一起输出变量；cout << &array[0][0] << " " << &array[0][1] << " " << &array[0][2] << endl;//cout：字符输出，与“《”（插入符）组合一起输出变量；cout << &array[0][0] << " " << &array[0][1] << " " << &array[0][2] << endl;//cout：字符输出，与“《”（插入符）组合一起输出变量；cout << &array[0][0] << " " << &array[0][1] << " " << &array[0][2] << endl;//cout：字符输出，与“《”（插入符）组合一起输出变量；
+    cout << &array[1][0] << " " << &array[1][1] << " " << &array[1][2] << endl;//“”用于在地址之间输出空格，便于区分；   endl表示换行并刷新输出缓冲区；
+}
+
+int main() {
+    test_arr();
+}//C++语言里二维数组储存是连续的
