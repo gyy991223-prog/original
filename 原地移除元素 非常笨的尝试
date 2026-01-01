@@ -1,0 +1,83 @@
+//我自己写的笨拙的代码（还用deepseek更正好几遍才跑通 只能安慰自己刚学零基础了/(ㄒoㄒ)/~~）
+#include <vector>     // 为了使用 vector
+#include <iostream>   // 可选，如果需要输入输出
+using namespace std;  // 或者使用 std::vector
+class Solution {类 Solution {
+public:
+    int removeElement(vector<int>& nums, int val) {
+        int count = 0;//设置count变量记录数组中数值不等于val的元素个数
+        for (int i = 0; i < nums.size(); i++) {
+            if (nums[i] == val) {
+                for (int j = i + 1; j < nums.size(); j++) {
+                    if (nums[j] != val) {     //交换前面等于val值元素和其后第一个不等于val值元素的值 
+                        int temp = nums[j];
+                        nums[j] = nums[i];
+                        nums[i] = temp;
+                        break;//交换后立即跳出内层for循环
+                    }
+                }
+            }//会存在反复交换的情况，时间复杂度的确有些大
+        }
+        for (int k = 0; k < nums.size(); k++) {
+            if (nums[k] != val)
+                count++;
+        }//最后统计所有不等于val值的元素个数
+        return count;
+    }
+};
+int main() {
+    Solution sol;
+    vector<int> nums = { 0, 1, 2, 2, 3, 0, 4, 2 };
+    int val = 2;
+
+    int result = sol.removeElement(nums, val);
+
+    cout << "最终数组: ";
+    for (int num : nums) {
+        cout << num << " ";
+    }
+    cout << endl;
+
+    cout << "返回的长度: " << result << endl;
+
+    return 0;
+}
+
+
+//老师的暴力解，用二层for循环每遇到与val值相等元素就将其后的数组元素集体往前移一位
+// 时间复杂度：O(n^2)
+// 空间复杂度：O(1)
+class Solution {
+public:
+    int removeElement(vector<int>& nums, int val) {
+        int size = nums.size();
+        for (int i = 0; i < size; i++) {
+            if (nums[i] == val) { // 发现需要移除的元素，就将数组集体向前移动一位
+                for (int j = i + 1; j < size; j++) {
+                    nums[j - 1] = nums[j];
+                }
+                i--; // 因为下标i以后的数值都向前移动了一位，所以i也向前移动一位
+                size--; // 此时数组的大小-1
+            }
+        }
+        return size;
+
+    }
+};
+
+
+//最优解 双指针法 设置快慢两个指针，在一个for循环中完成遍历和数值更新
+// 时间复杂度：O(n)
+// 空间复杂度：O(1)
+class Solution {
+public:
+    int removeElement(vector<int>& nums, int val) {
+        int slowIndex = 0;
+        for (int fastIndex = 0; fastIndex < nums.size(); fastIndex++) {
+            if (val != nums[fastIndex]) {
+                nums[slowIndex++] = nums[fastIndex];//先赋值再移位
+            }
+        }
+        return slowIndex;
+    }
+};
