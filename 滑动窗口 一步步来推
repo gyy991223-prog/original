@@ -1,0 +1,81 @@
+#include <vector>     // 为了使用 vector
+#include <iostream>   // 可选，如果需要输入输出
+using namespace std;  // 或者使用 std::vector
+
+//啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊按老师提示推出来了就真的很有成就感
+class Solution {
+public:
+    int minSubArrayLen(int target, vector<int>& nums) {
+        int i = 0;
+        int sum = 0;
+        int sublength = 0;
+        int len = INT32_MAX;
+        for (int j = i; j <nums.size(); j++) {
+            sum += nums[j];
+            if (sum >= target) {
+                sublength = j - i + 1;
+                len = len < sublength ? len : sublength;
+                while(sum - nums[i] >= target) {
+                    sum -= nums[i];
+                    i++;
+                    sublength = j - i + 1;
+                    len = len < sublength ? len : sublength;
+                }
+            }
+        }
+        return len == INT32_MAX ? 0 : len;
+    }
+};
+
+//by teacher
+class Solution {
+public:
+    int minSubArrayLen(int s, vector<int>& nums) {
+        int result = INT32_MAX;
+        int sum = 0; // 滑动窗口数值之和
+        int i = 0; // 滑动窗口起始位置
+        int subLength = 0; // 滑动窗口的长度
+        for (int j = 0; j < nums.size(); j++) {
+            sum += nums[j];
+            // 注意这里使用while，每次更新 i（起始位置），并不断比较子序列是否符合条件
+            while (sum >= s) {
+                subLength = (j - i + 1); // 取子序列的长度
+                result = result < subLength ? result : subLength;
+                sum -= nums[i++]; // 这里体现出滑动窗口的精髓之处，不断变更i（子序列的起始位置）
+            }
+        }
+        // 如果result没有被赋值的话，就返回0，说明没有符合条件的子序列
+        return result == INT32_MAX ? 0 : result;
+    }
+};
+int main() {
+    // --- 准备测试数据 (示例 1) ---
+    int target = 7;
+    vector<int> nums = { 2, 3, 1, 2, 4, 3 };
+
+    // --- 调用函数 ---
+    Solution solution;
+    int result = solution.minSubArrayLen (target,nums);
+
+    // --- 输出结果 ---
+    cout << "测试示例 1:" << endl;
+    cout << "目标值 (target): " << target << endl;
+    cout << "输入数组 (nums): [";
+    // 打印数组内容
+    for (int i = 0; i < nums.size(); i++) {
+        cout << nums[i];
+        if (i < nums.size() - 1) cout << ", ";
+    }
+    cout << "]" << endl;
+    cout << "输出: " << result << endl;
+
+    // --- 额外提示 ---
+    if (result == 2) {
+        cout << "✅ 测试通过！子数组 [4, 3] 的长度为 2。" << endl;
+    }
+    else {
+        cout << "❌ 测试未通过，请检查代码。" << endl;
+    }
+
+    return 0; // 程序正常结束
+}
